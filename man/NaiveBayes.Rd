@@ -34,9 +34,9 @@ NaiveBayes(x, ...)
 
 \item{laplace}{value used for Laplace smoothing ( additive smoothing ). Defaults to 0 ( no Laplace smoothing )}
 
-\item{formula}{users can also input their data via NaiveBayes (formula, data = ...) format. A formula of the form "class ~ x1 + x2 + x3 ..." Interactions are not allowed}
+\item{formula}{users can also input their data via NaiveBayes ( formula, data = ... ) format. A formula of the form "class ~ x1 + x2 + x3 ..." Interactions are not allowed}
 
-\item{data}{Either a datafrom of predictors ( categorical and / or numeric)  or a contigency table.}
+\item{data}{Either a datafrom of predictors ( categorical and/or numeric)  or a contigency table.}
 
 \item{object}{a fitted object of class "NaiveBayes"}
 
