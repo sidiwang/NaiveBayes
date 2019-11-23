@@ -28,7 +28,7 @@ y = HouseVotes84[,1]
 
 The target variable we are interested in is the salary of the players. Therefore we run
 
-```{r setup}
+```{r}
 library(NaiveBayes)
 mymodel = NaiveBayes(Class~., data = HouseVotes84, laplace = 0)
 mymodel
@@ -39,9 +39,6 @@ mymodel
 `nvmax` specifies the maximal number of variables we want in a subset. In this case the model will generate subsets with up to 12 variables inside. By default `nvmax` is 8.
 
 We can also feed in the design matrix and the response vector to `varselect` as well. The following code should generate the same model.
-
-```{r setup}
-mymodel = varselect(
 
 
 
