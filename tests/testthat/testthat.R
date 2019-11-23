@@ -1,6 +1,7 @@
 library(testthat)
 library(NaiveBayes)
 library(e1071)
+library("mlbench")
 
 
 data(HouseVotes84, package = "mlbench")
