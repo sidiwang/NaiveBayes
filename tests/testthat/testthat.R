@@ -8,9 +8,9 @@ HouseVotes84 <- na.omit(HouseVotes84)
 x = HouseVotes84[,-1]
 y = HouseVotes84[,1]
 result = c(0.7870370, 0.4112903, 0.2129630, 0.5887097)
-irisresult = c(6.588, 5.006, 5.936, 0.6358796, 0.3524897, 0.5161711)
+irisresult = c(5.006, 6.588, 5.936, 0.3524897, 0.6358796, 0.5161711)
 predict = predict(naiveBayes(x,y),x)
-irispredict = predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5])
+irispredict = predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5])
 
 
 test_that("Category / factoral variable classification", {
