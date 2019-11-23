@@ -31,7 +31,6 @@ The target variable we are interested in is the salary of the players. Therefore
 ```{r}
 library(NaiveBayes)
 mymodel = NaiveBayes(Class~., data = HouseVotes84, laplace = 0)
-mymodel
 
 ```
 
