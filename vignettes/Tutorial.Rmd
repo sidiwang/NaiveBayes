@@ -18,7 +18,10 @@ This package comes with several toy datasets. They are the redacted versions of 
 First load the dataset.
 
 ```{r, include = FALSE}
-library("mlbench")
+library(mlbench)
+library(datasets)
+
+
 data(HouseVotes84, package = "mlbench")
 HouseVotes84 <- na.omit(HouseVotes84)
 x = HouseVotes84[,-1]
