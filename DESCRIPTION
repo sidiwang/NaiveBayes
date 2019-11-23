@@ -1,11 +1,11 @@
 Package: NaiveBayes
 Type: Package
-Title: Naive Bayes Classifier
+Title: Naive Bayes Classification and Prediction
 Version: 0.1.0
 Author: Sidi Wang
 Maintainer: Sidi Wang <sidiwang@umich.edu>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A Naive Bayes classifier that assumes independence between the feature variables. The model automatically detects the input data type and applies corresponding classification rules (categorical / numerical) to each variable. The Gaussian distribution is used with numerical values.
+URL: https://github.com/sidiwang/NaiveBayes
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -20,3 +20,4 @@ Suggests:
     testthat,
     covr
 VignetteBuilder: knitr
+Packaged: 2019-11-23
