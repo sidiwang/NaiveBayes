@@ -1,0 +1,54 @@
+---
+title: "Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+`varselect` is a function that carries out forward variable selection for linear regression. This function will output the selected variables of each subset along the way and their coefficients. This function also provides the scores of various criteria (Mallows Cp, AIC, BIC and adjusted R-square) for the user's reference.
+
+# Usage
+
+This package comes with several toy datasets. They are the redacted versions of datasets from the [ISLR](https://cran.r-project.org/web/packages/ISLR/ISLR.pdf) package. I will use the dataset `Hitters` as an example. You can also use `Carseats`, `College`, `Credit` and `OJ` datasets.
+
+First load the dataset.
+
+```{r, include = FALSE}
+data(HouseVotes84, package = "mlbench")
+HouseVotes84 <- na.omit(HouseVotes84)
+x = HouseVotes84[,-1]
+y = HouseVotes84[,1]
+
+```
+
+
+The target variable we are interested in is the salary of the players. Therefore we run
+
+```{r setup}
+library(NaiveBayes)
+mymodel = NaiveBayes(Class~., data = HouseVotes84, laplace = 0)
+mymodel
+
+```
+
+
+`nvmax` specifies the maximal number of variables we want in a subset. In this case the model will generate subsets with up to 12 variables inside. By default `nvmax` is 8.
+
+We can also feed in the design matrix and the response vector to `varselect` as well. The following code should generate the same model.
+
+```{r setup}
+mymodel = varselect(
+
+
+
+
+
+
+
+
+
+
