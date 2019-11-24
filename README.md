@@ -49,7 +49,7 @@ how to use this package, and a **performance comparison** against the
 *naiveBayes* function in package **e1071** were also included. Given the
 <span style="color:purple">NaiveBayes</span> function was partially
 written in Rcpp and vectorized some calculations in matrix form, our
-performance, in general, is better in efficiency and need less memory
+performance, in general, is better in efficiency and needs less memory
 allocation.
 
 Please use this code to check the vignettes.
