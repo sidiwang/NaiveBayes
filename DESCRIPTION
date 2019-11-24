@@ -23,7 +23,8 @@ Suggests:
     bench,
     ggplot2,
     tidyr,
-    ggbeeswarm
+    ggbeeswarm,
+    devtools
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Packaged: 2019-11-23

@@ -30,8 +30,8 @@ test_that("fit categorical variables", {
 })
 
 test_that("predict based on categorical varialbes, with eps", {
-  simulation = c("democrat", "democrat", "democrat", "democrat", "democrat")
-  expect_equal(as.character(predict(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1]), HouseVotes84[1:5,-1], eps = 100)), simulation)
+  simulation = c("democrat")
+  expect_equal(as.character(predict(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1]), HouseVotes84[1,-1])), simulation)
 })
 
 

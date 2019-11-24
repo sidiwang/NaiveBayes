@@ -69,7 +69,15 @@ where the evidence $Z = \sum_k P(C_k)P(x|C_k)$ is a scaling factor dependent onl
 
 ## Installation
 
-This package can be downloaded from Github: [Repository: NaiveBayes](https://github.com/sidiwang/NaiveBayes), and compiled on your local machine. After successful installation, the package can be used with:
+This package can be downloaded from Github: [Repository: NaiveBayes](https://github.com/sidiwang/NaiveBayes) with:
+
+```{r}
+library(devtools)
+install_github("sidiwang/NaiveBayes", build_vignettes = T)
+
+```
+
+After successful installation, the package can be used with:
 
 ```{r}
 library(NaiveBayes)
@@ -213,7 +221,7 @@ ifelse(results == 4, "results are all equal", "results are not equal")
 # compare fit model performance
 # again, we randomly select one variable to compare
 # NOTE: it is possible that this warning will pop up: "Warning: Some expressions had a GC in every iteration; so filtering is disabled."
-# The plot below shows that it is e1071's naivebayes that is causing this warning. Given this is not our coding issue, and GC 
+# The plot below shows that, very often, it is e1071's naivebayes that is causing this warning. Given this is not our coding issue, and GC 
 # behavior cannot be controlled by R users, this warning shouldn't be regarded as our package error.
 
 idx = sample(1:2213, 1)
