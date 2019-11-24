@@ -10,3 +10,17 @@
 #'
 #' @source \url{https://www.figure-eight.com/data-for-everyone/}
 "tweet1"
+
+
+
+#' HouseVotes dataset
+#'
+#' This data set includes votes for each of the U.S. House of Representatives Congressmen on the 16 key votes identified by the CQA.
+#'
+#' These data have been taken from the UCI Repository Of Machine Learning Databases
+#' and were converted to R format by Friedrich Leisch.
+#'
+#' @format a data frame with 232 rows and 17 columns.
+#'
+#' @source \url{http://www.ics.uci.edu/~mlearn/MLRepository.html}
+"HouseVotes84"

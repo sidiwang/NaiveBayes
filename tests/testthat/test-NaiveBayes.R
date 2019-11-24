@@ -13,7 +13,7 @@ colnames(HouseVotes84) = letters[1:17]
 HVresult = c(0.7870370, 0.4112903,  0.2129630, 0.5887097)
 HVpredict = predict(naiveBayes(HouseVotes84[,-1],HouseVotes84[,1]), HouseVotes84[1:10,-1])
 
-test_that("package ", {
+test_that("continous variable classification", {
   expect_equal(c(NaiveBayes(iris[,-5], iris[,5])$result[[1]]), irisresult, tolerance = 1e-5)
 })
 

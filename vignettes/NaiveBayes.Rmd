@@ -182,6 +182,7 @@ library(bench)
 library(rmarkdown)
 library(ggplot2)
 library(tidyr)
+library(ggbeeswarm)
 
 # check output are the same
 model_a = NaiveBayes::NaiveBayes(x, y)
@@ -222,8 +223,16 @@ plot(result)
 
 as can be seen from the table and plots above, **NaiveBayes** package performs significantly better than the *naiveBayes* function in package *e1071*.
 
-This verifies that rewrite R code in **Rcpp** can increase the efficiency of the code.
+This verifies that rewriting R code in **Rcpp** can increase the efficiency of the code.
 
+
+
+
+
+
+
+```{r}
+```
 
 
 
