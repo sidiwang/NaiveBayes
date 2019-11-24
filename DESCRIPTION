@@ -22,7 +22,8 @@ Suggests:
     e1071,
     bench,
     ggplot2,
-    tidyr
+    tidyr,
+    ggbeeswarm
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Packaged: 2019-11-23
