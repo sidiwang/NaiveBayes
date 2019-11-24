@@ -180,6 +180,7 @@ y = tweet1[, 1]
 library(e1071)
 library(bench)
 library(rmarkdown)
+library(ggplot2)
 
 # check output are the same
 model_a = NaiveBayes::NaiveBayes(x, y)

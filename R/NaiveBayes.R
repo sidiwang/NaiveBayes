@@ -73,6 +73,7 @@ NaiveBayes = function(x, ...)
 #' @rdname NaiveBayes
 #' @export
 NaiveBayes.default = function(x, y, laplace = 0, ...){
+  # organizing function input
   call = match.call()
   x = as.data.frame(x)
   n_var = ncol(x)
@@ -80,10 +81,11 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
   y = as.character(y)
   laplace = laplace
 
-  # format output
+  # generate frequency tables of each variable, implemented via Rcpp
   apriori = table(y)
   results = NaiveBayes:::mean_sd(x, y, laplace)
 
+  # formatting function output
   for (i in 1:length(results)){
     names(dimnames(results[[i]])) = c(Name_y, colnames(x)[i])
   }
@@ -103,6 +105,7 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
 #' @export
 # for formula input
 NaiveBayes.formula = function(formula, data, laplace = 0, ...) {
+  # organizing function input
   call = match.call()
   fm = match.call(expand.dots = FALSE)
   fm$... = NULL
@@ -113,6 +116,7 @@ NaiveBayes.formula = function(formula, data, laplace = 0, ...) {
   Y = model.extract(fm, "response")
   X = fm[,-attr(tms, "response"), drop = FALSE]
 
+  # send to .default function for data processing
   return(NaiveBayes(X, Y, laplace = laplace, ...))
 }
 

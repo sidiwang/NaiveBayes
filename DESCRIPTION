@@ -20,7 +20,8 @@ Suggests:
     testthat,
     covr,
     e1071,
-    bench
+    bench,
+    ggplot2
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Packaged: 2019-11-23
