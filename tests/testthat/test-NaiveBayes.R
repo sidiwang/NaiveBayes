@@ -4,6 +4,7 @@ library(datasets)
 irisresult = c(6.5880000, 5.0060000, 5.9360000, 0.6358796, 0.3524897, 0.5161711)
 irispredict = predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5])
 irispredict_raw = c(predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"])
+results = print(NaiveBayes(Species ~ ., data = iris)$apriori)
 
 data(HouseVotes84)
 colnames(HouseVotes84) = letters[1:17]
@@ -21,6 +22,13 @@ test_that("prediction of continous variable classification", {
   expect_equal(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5]), irispredict)
 })
 
+test_that("prediction of continous variable classification", {
+  expect_equal(predict(NaiveBayes(Species ~ ., data = iris), iris[,-5]), irispredict)
+})
+
+test_that("prediction of continous variable classification", {
+  expect_equal(print(NaiveBayes(Species ~ ., data = iris)$apriori), results)
+})
 
 test_that("prediction of continous variable classification", {
   expect_equal(c(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"]), irispredict_raw, tolerance = 1e-5)
