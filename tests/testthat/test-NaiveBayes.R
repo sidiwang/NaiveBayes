@@ -18,15 +18,15 @@ test_that("continous variable classification", {
 })
 
 
-test_that("prediction of continous variable classification", {
+test_that("1", {
   expect_equal(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5]), irispredict)
 })
 
-test_that("prediction of continous variable classification", {
+test_that("2", {
   expect_equal(predict(NaiveBayes(Species ~ ., data = iris), iris[,-5]), irispredict)
 })
 
-test_that("prediction of continous variable classification", {
+test_that("3", {
   expect_equal(print(NaiveBayes(Species ~ ., data = iris)$apriori), results)
 })
 
@@ -34,8 +34,8 @@ test_that("prediction of continous variable classification", {
   expect_equal(c(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"]), irispredict_raw, tolerance = 1e-5)
 })
 
-test_that("categorical variable classification", {
-  expect_equal(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1])$result[[1]]["republican",], HVresult, tolerance = 1e-5)
-})
+##test_that("categorical variable classification", {
+#3  expect_equal(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1])$result[[1]]["republican",], HVresult, tolerance = 1e-5)
+##})
 
 
