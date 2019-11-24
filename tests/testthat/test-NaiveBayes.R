@@ -1,13 +1,16 @@
 library(e1071)
 library(datasets)
 
+
+# testing input
 irisresult = c(6.5880000, 5.0060000, 5.9360000, 0.6358796, 0.3524897, 0.5161711)
 irispredict = predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5])
-irispredict_eps = rep("virginica", 10)
 irispredict_raw = c(predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"])
 results = print(NaiveBayes(Species ~ ., data = iris)$apriori)
-output_print = c("","Naive Bayes Classifier for Discrete Predictors","","Call:","NULL","","A-priori probabilities:","NULL","","Predictors:","NULL","","Conditional probabilities:")
-
+simulation = c("eight","eight","eight")
+output_print = capture.output(print.NaiveBayes(NaiveBayes(x, y)))
+x = matrix(c("a","b","c","b","c","t","t","c","c","r","b","a"),3,4)
+y = c("eight","one","nine")
 data(HouseVotes84)
 colnames(HouseVotes84) = letters[1:17]
 HVresult = c(0.7870370, 0.2129630)
@@ -25,7 +28,7 @@ test_that("1", {
 })
 
 test_that("1", {
-  expect_equal(as.character(predict(NaiveBayes(iris[,-5], iris[,5]), iris[1:10,-5], eps = 100)), irispredict_eps)
+  expect_equal(as.character(predict(NaiveBayes(x, y), x, eps = 100)), simulation)
 })
 
 test_that("2", {
@@ -45,5 +48,5 @@ test_that("categorical variable classification", {
 })
 
 test_that("print", {
-  expect_equal(capture.output(print.NaiveBayes(iris[,-5], iris[,5])), output_print)
+  expect_equal(capture.output(print.NaiveBayes(NaiveBayes(x, y))), output_print)
 })

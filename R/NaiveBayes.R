@@ -143,7 +143,7 @@ print.NaiveBayes = function(x, ...) {
 
 #' @rdname NaiveBayes
 #' @export
-predict.NaiveBayes <- function(object, newdata, type = c("class", "raw"), threshold = 0.001, eps = 0, ...) {
+predict.NaiveBayes = function(object, newdata, type = c("class", "raw"), threshold = 0.001, eps = 0, ...) {
   # organizing function input
   type = match.arg(type)
   newdata = as.data.frame(newdata)
@@ -154,7 +154,7 @@ predict.NaiveBayes <- function(object, newdata, type = c("class", "raw"), thresh
   # more explanation on the theoretical part of Naive Bayes please refer to the vignettes of this package
   for (j in 1:nrow(newdata)){
     # use log to handle numerical underflow
-    probs[ , j] = rowSums(log(sapply(neworder, function(index){
+    probs[ , j] = rowSums(log(sapply(seq_along(neworder), function(index){
       # handling discrete and continuous data differently
       if (is.numeric(newdata[j, index])){
         oneresult = object$results[[index]]
@@ -164,6 +164,7 @@ predict.NaiveBayes <- function(object, newdata, type = c("class", "raw"), thresh
       } else {
         prob = object$results[[index]][, as.character(newdata[j, index])]
         prob[prob <= eps] = threshold
+        return(prob)
       }})))
   }
 
