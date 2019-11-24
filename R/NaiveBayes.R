@@ -85,7 +85,7 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
 
   # generate frequency tables of each variable, implemented via Rcpp
   apriori = table(y)
-  results = NaiveBayes:::mean_sd(x, y, laplace)
+  results = mean_sd(x, y, laplace)
 
   # formatting function output
   for (i in 1:length(results)){
