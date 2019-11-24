@@ -1,8 +1,8 @@
 ---
-title: "Tutorial"
+title: "NaiveBayes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Tutorial}
+  %\VignetteIndexEntry{NaiveBayes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -170,8 +170,59 @@ prediction
 
 ## Performace Comparison
 
-```{r}
-#data(tweet)
+```{r, layout = "1-body-outset"}
+# load data, with 2213 variables and 100 observations.
+data(tweet1)
+x = as.data.frame(tweet1[, -1])
+y = tweet1[, 1]
 
+# load other packages
+library(e1071)
+library(bench)
+library(rmarkdown)
+
+# check output are the same
+model_a = NaiveBayes::NaiveBayes(x, y)
+model_b = e1071::naiveBayes(x, y)
+
+#   compare fit model output: given that this dataset contain too many variables, here we only compare
+#   output frequency table of 4 randomly selected variables. Since each method has different ways
+#   of organizing outputs, we will only check the results on one randomly selected row. Each time we run 
+#   the code below, the checked variables and output row will be RANDOM
+
+# for fairness, we RANDOMLY select four variable index and one output row for testing
+
+selected_index = sample(1:2213, 4)
+selected_row = sample(c("negative","neutral","positive"), 1)
+results = 0
+for (i in selected_index){
+result = all.equal(model_a$results[[i]][selected_row,], model_b$tables[[i]][selected_row,], tolerance = 1.5e-5)
+results = result + results
+}
+
+ifelse(results == 4, "results are all equal", "results are not equal")
+
+# compare fit model performance
+# again, we randomly select one variable to compare
+
+idx = sample(1:2213, 1)
+
+result = bench::mark(NaiveBayes::NaiveBayes(x, y)$results[[idx]][selected_row,],e1071::naiveBayes(x, y)$tables[[idx]][selected_row,])
+
+paged_table(result)
 
 ```
+
+```{r, fig.width = 7.2}
+plot(result)
+
+```
+
+as can be seen from the table and plots above, **NaiveBayes** package performs significantly better than the *naiveBayes* function in package *e1071*.
+
+This verifies that rewrite R code in **Rcpp** can increase the efficiency of the code.
+
+
+
+
+

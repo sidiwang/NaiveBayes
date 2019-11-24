@@ -61,7 +61,7 @@
 #' mymodel2 = NaiveBayes(x, ina)
 #' predict(mymodel2, x)
 
-#' @useDynLib NaiveBayes
+#' @useDynLib NaiveBayes, .registration = TRUE
 #'
 
 
@@ -82,7 +82,7 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
 
   # format output
   apriori = table(y)
-  results = mean_sd(x, y, laplace)
+  results = NaiveBayes:::mean_sd(x, y, laplace)
 
   for (i in 1:length(results)){
     names(dimnames(results[[i]])) = c(Name_y, colnames(x)[i])
@@ -93,7 +93,7 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
                  results = results,
                  levels = if (is.logical(y)) c(FALSE, TRUE) else levels(y),
                  predictors = colnames(x),
-                 call   = call
+                 call = call
   ),
   class = "NaiveBayes"
   )

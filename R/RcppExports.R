@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 mean_sd <- function(x, y, laplace = 0) {
-    .Call('_NaiveBayes_mean_sd', PACKAGE = 'NaiveBayes', x, y, laplace)
+    .Call(`_NaiveBayes_mean_sd`, x, y, laplace)
 }
 
