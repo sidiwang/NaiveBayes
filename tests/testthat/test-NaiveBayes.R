@@ -3,8 +3,10 @@ library(datasets)
 
 irisresult = c(6.5880000, 5.0060000, 5.9360000, 0.6358796, 0.3524897, 0.5161711)
 irispredict = predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5])
+irispredict_eps = rep("virginica", 10)
 irispredict_raw = c(predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"])
 results = print(NaiveBayes(Species ~ ., data = iris)$apriori)
+output_print = c("","Naive Bayes Classifier for Discrete Predictors","","Call:","NULL","","A-priori probabilities:","NULL","","Predictors:","NULL","","Conditional probabilities:")
 
 data(HouseVotes84)
 colnames(HouseVotes84) = letters[1:17]
@@ -22,6 +24,10 @@ test_that("1", {
   expect_equal(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5]), irispredict)
 })
 
+test_that("1", {
+  expect_equal(as.character(predict(NaiveBayes(iris[,-5], iris[,5]), iris[1:10,-5], eps = 100)), irispredict_eps)
+})
+
 test_that("2", {
   expect_equal(predict(NaiveBayes(Species ~ ., data = iris), iris[,-5]), irispredict)
 })
@@ -34,8 +40,10 @@ test_that("prediction of continous variable classification", {
   expect_equal(c(predict(NaiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"]), irispredict_raw, tolerance = 1e-5)
 })
 
-##test_that("categorical variable classification", {
-#3  expect_equal(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1])$result[[1]]["republican",], HVresult, tolerance = 1e-5)
-##})
+test_that("categorical variable classification", {
+  expect_equal(NaiveBayes(HouseVotes84[,-1],HouseVotes84[,1])$result[[1]]["republican",], HVresult, tolerance = 1e-5)
+})
 
-
+test_that("print", {
+  expect_equal(capture.output(print.NaiveBayes(iris[,-5], iris[,5])), output_print)
+})
