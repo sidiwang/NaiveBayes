@@ -149,5 +149,5 @@ prediction[1:10]
   - This is the **very first Rcpp / C++ program** written by the author,
     unaware of many Rcpp / C++ functions and coding rules, many
     redundant code may be included. Better efficiencies should be
-    achieved in the future as the author become more experienced in
+    achieved in the future as the author becomes more experienced in
     coding Rcpp / C++.
