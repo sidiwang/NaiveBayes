@@ -117,11 +117,11 @@ To speed up the calculation for large datasets, this package further simplied th
 n <- 100
 set.seed(1)
 data <- data.frame(class = sample(c("classA", "classB"), n, TRUE),
-                   bern = sample(LETTERS[1:2], n, TRUE),
-                   cat  = sample(letters[1:3], n, TRUE),
-                   logical = sample(c(TRUE,FALSE), n, TRUE),
+                   bern = sample(LETTERS[1: 2], n, TRUE),
+                   cat  = sample(letters[1: 3], n, TRUE),
+                   logical = sample(c(TRUE, FALSE), n, TRUE),
                    norm = rnorm(n),
-                   count = rpois(n, lambda = c(5,15)))
+                   count = rpois(n, lambda = c(5, 15)))
 
 # fit model
 nb <- NaiveBayes(class ~ ., data) 
@@ -136,8 +136,8 @@ nb
 ```{r}
 # prepare data:
 data(iris)
-x = iris[ ,-5]
-y = iris[ ,5]
+x = iris[ , -5]
+y = iris[ , 5]
 
 # fit model
 nb2 <- NaiveBayes(x, y) 
@@ -153,9 +153,9 @@ nb2
 # prepare data:
 set.seed(2)
 iris_shuffle = iris[sample(nrow(iris)),]
-training = iris_shuffle[1:130,]
-x = training[ ,-5]
-y = training[ ,5]
+training = iris_shuffle[1:130, ]
+x = training[ , -5]
+y = training[ , 5]
 
 testing = iris_shuffle[131:150, -5]
 
@@ -181,6 +181,7 @@ library(e1071)
 library(bench)
 library(rmarkdown)
 library(ggplot2)
+library(tidyr)
 
 # check output are the same
 model_a = NaiveBayes::NaiveBayes(x, y)

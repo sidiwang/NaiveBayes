@@ -70,9 +70,11 @@
 NaiveBayes = function(x, ...)
   UseMethod("NaiveBayes", x)
 
+
 #' @rdname NaiveBayes
 #' @export
 NaiveBayes.default = function(x, y, laplace = 0, ...){
+
   # organizing function input
   call = match.call()
   x = as.data.frame(x)
@@ -105,6 +107,7 @@ NaiveBayes.default = function(x, y, laplace = 0, ...){
 #' @export
 # for formula input
 NaiveBayes.formula = function(formula, data, laplace = 0, ...) {
+
   # organizing function input
   call = match.call()
   fm = match.call(expand.dots = FALSE)
@@ -114,7 +117,7 @@ NaiveBayes.formula = function(formula, data, laplace = 0, ...) {
   fm = eval(fm, parent.frame())
   tms = attr(fm, "terms")
   Y = model.extract(fm, "response")
-  X = fm[,-attr(tms, "response"), drop = FALSE]
+  X = fm[, -attr(tms, "response"), drop = FALSE]
 
   # send to .default function for data processing
   return(NaiveBayes(X, Y, laplace = laplace, ...))
@@ -123,7 +126,7 @@ NaiveBayes.formula = function(formula, data, laplace = 0, ...) {
 
 #' @rdname NaiveBayes
 #' @export
-# output format for model fitting
+# output formatting
 print.NaiveBayes = function(x, ...) {
   cat("\nNaive Bayes Classifier for Discrete Predictors\n\n")
   cat("Call:\n")
@@ -141,22 +144,26 @@ print.NaiveBayes = function(x, ...) {
 #' @rdname NaiveBayes
 #' @export
 predict.NaiveBayes <- function(object, newdata, type = c("class", "raw"), threshold = 0.001, eps = 0, ...) {
+  # organizing function input
   type = match.arg(type)
   newdata = as.data.frame(newdata)
   neworder = match(object$predictors, colnames(newdata))
   probs = matrix(0, length(object$apriori), nrow(newdata))
 
-  # generate probability of each observation given each level of y
+  # generate the probability of each observation given different y level
+  # more explanation on the theoretical part of Naive Bayes please refer to the vignettes of this package
   for (j in 1:nrow(newdata)){
+    # use log to handle numerical underflow
     probs[ , j] = rowSums(log(sapply(neworder, function(index){
-      if (is.numeric(newdata[j,index])){
+      # handling discrete and continuous data differently
+      if (is.numeric(newdata[j, index])){
         oneresult = object$results[[index]]
         oneresult[, 2][oneresult[, 2] <= eps] = threshold
-        return(stats::dnorm(newdata[j,index], oneresult[, 1], oneresult[, 2]))
+        # if continuous, we assumes Gaussian Distribution
+        return(stats::dnorm(newdata[j, index], oneresult[, 1], oneresult[, 2]))
       } else {
         prob = object$results[[index]][, as.character(newdata[j, index])]
         prob[prob <= eps] = threshold
-        #return(prob)
       }})))
   }
 
