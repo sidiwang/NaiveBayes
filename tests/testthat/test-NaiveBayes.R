@@ -8,16 +8,17 @@ irispredict = predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5])
 irispredict_raw = c(predict(naiveBayes(iris[,-5], iris[,5]), iris[,-5], type = "raw")[,"versicolor"])
 results = print(NaiveBayes(Species ~ ., data = iris)$apriori)
 simulation = c("eight","eight","eight")
-output_print = capture.output(print.NaiveBayes(NaiveBayes(x, y)))
-x = matrix(c("a","b","c","b","c","t","t","c","c","r","b","a"),3,4)
 y = c("eight","one","nine")
+x = matrix(c("a","b","c","b","c","t","t","c","c","r","b","a"),3,4)
+output_print = capture.output(print.NaiveBayes(NaiveBayes(x, y)))
+
 data(HouseVotes84)
 colnames(HouseVotes84) = letters[1:17]
 HVresult = c(0.7870370, 0.2129630)
 names(HVresult) = c("n","y")
-
 HVpredict = predict(naiveBayes(HouseVotes84[,-1],HouseVotes84[,1]), HouseVotes84[1:10,-1])
 
+# testing cases
 test_that("continous variable classification", {
   expect_equal(c(NaiveBayes(iris[,-5], iris[,5])$result[[1]]), irisresult, tolerance = 1e-5)
 })
