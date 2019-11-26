@@ -241,7 +241,7 @@ as can be seen from the table and plots above, **NaiveBayes** package performs s
 
 This verifies that rewriting R code in **Rcpp** can increase the efficiency of the code.
 
-(We have run the comparion above many times before publishing this vignettes, if you get a contrary outcome, please run multiple times and compare)
+(We have verified the comparion conclusion above many times before publishing this vignettes, if you get a contrary outcome by chance, please run a few more times and compare)
 
 
 
